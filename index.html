@@ -1,1 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shriram FitFuel & Nutrition Club</title>
+  <meta name="description" content="Shriram FitFuel & Nutrition Club - Premium gym, nutrition, sprouts, boiled eggs, boiled chicken, oats, musli, salads and member fitness support." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#060606;
+      --bg2:#101010;
+      --card:rgba(255,255,255,0.06);
+      --line:rgba(255,180,60,0.18);
+      --gold:#ffb347;
+      --gold2:#ff7a00;
+      --text:#f5f5f5;
+      --muted:#c8c8c8;
+      --shadow:0 20px 60px rgba(0,0,0,.55);
+      --radius:24px;
+    }
 
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Inter',sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,122,0,.15), transparent 30%),
+        radial-gradient(circle at 80% 20%, rgba(255,179,71,.12), transparent 22%),
+        linear-gradient(180deg,#040404 0%, #0b0b0b 48%, #050505 100%);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:
+        radial-gradient(circle, rgba(255,179,71,.12) 1px, transparent 1px);
+      background-size:26px 26px;
+      opacity:.25;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,.65), transparent 92%);
+    }
+
+    .container{width:min(1180px, 92%);margin:auto}
+
+    .nav{
+      position:sticky;top:0;z-index:1000;
+      backdrop-filter:blur(14px);
+      background:rgba(5,5,5,.72);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .nav-inner{
+      display:flex;align-items:center;justify-content:space-between;
+      min-height:78px;gap:18px;
+    }
+
+    .brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--text)}
+    .brand img{
+      width:58px;height:58px;object-fit:cover;border-radius:50%;
+      border:1px solid rgba(255,179,71,.45);
+      box-shadow:0 0 22px rgba(255,140,0,.35);
+    }
+    .brand h2{
+      font-family:'Cinzel',serif;font-size:1rem;line-height:1.15;letter-spacing:.6px;
+    }
+    .brand span{display:block;color:var(--gold);font-size:.72rem;margin-top:3px;font-family:'Inter',sans-serif}
+
+    .nav-links{display:flex;gap:24px;align-items:center}
+    .nav-links a{
+      color:#ececec;text-decoration:none;font-size:.95rem;opacity:.9;transition:.25s ease;
+    }
+    .nav-links a:hover{color:var(--gold)}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:14px 22px;border-radius:999px;border:none;cursor:pointer;
+      text-decoration:none;font-weight:700;transition:.3s ease;letter-spacing:.2px;
+    }
+    .btn-primary{
+      color:#161616;
+      background:linear-gradient(135deg,var(--gold),#ffd27a,var(--gold2));
+      box-shadow:0 10px 25px rgba(255,140,0,.22);
+    }
+    .btn-primary:hover{transform:translateY(-2px) scale(1.01)}
+    .btn-outline{
+      color:var(--text);
+      background:transparent;
+      border:1px solid rgba(255,179,71,.35);
+    }
+    .btn-outline:hover{background:rgba(255,179,71,.08)}
+
+    .hero{padding:88px 0 54px;position:relative}
+    .hero-grid{
+      display:grid;grid-template-columns:1.2fr .9fr;gap:36px;align-items:center;
+    }
+    .badge{
+      display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;
+      border:1px solid var(--line);background:rgba(255,179,71,.08);color:#ffe1b3;
+      font-size:.92rem;margin-bottom:22px;
+    }
+    .title{
+      font-family:'Cinzel',serif;
+      font-size:clamp(2.4rem, 6vw, 5.3rem);
+      line-height:1.03;
+      letter-spacing:.7px;
+      margin-bottom:16px;
+      text-shadow:0 0 22px rgba(255,166,0,.12);
+    }
+    .title .gold{color:var(--gold)}
+    .subtitle{
+      max-width:700px;font-size:1.05rem;line-height:1.8;color:var(--muted);margin-bottom:26px;
+    }
+
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+    .stat{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(255,179,71,.1);
+      border-radius:20px;padding:18px;box-shadow:var(--shadow)
+    }
+    .stat h3{font-size:1.5rem;color:var(--gold);margin-bottom:4px}
+    .stat p{font-size:.95rem;color:#d7d7d7}
+
+    .hero-card{
+      position:relative;
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border:1px solid rgba(255,179,71,.16);
+      border-radius:32px;padding:22px;box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .hero-card::after{
+      content:"";position:absolute;inset:auto -40px -60px auto;width:180px;height:180px;
+      background:radial-gradient(circle, rgba(255,170,0,.34), transparent 65%);
+      filter:blur(18px);
+    }
+    .hero-logo{
+      width:100%;border-radius:26px;border:1px solid rgba(255,179,71,.16);
+      background:#0d0d0d;display:block;box-shadow:0 16px 50px rgba(0,0,0,.5);
+    }
+
+    section{padding:72px 0}
+    .section-head{text-align:center;max-width:760px;margin:0 auto 40px}
+    .section-head h2{
+      font-family:'Cinzel',serif;font-size:clamp(1.9rem,4vw,3rem);margin-bottom:12px;
+    }
+    .section-head p{color:var(--muted);line-height:1.8}
+
+    .grid-4,.grid-3,.grid-2{display:grid;gap:22px}
+    .grid-4{grid-template-columns:repeat(4,1fr)}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .grid-2{grid-template-columns:repeat(2,1fr)}
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(255,179,71,.12);
+      border-radius:var(--radius);
+      padding:24px;box-shadow:var(--shadow);
+      transition:.3s ease;
+    }
+    .card:hover{transform:translateY(-6px);border-color:rgba(255,179,71,.26)}
+    .icon{
+      width:54px;height:54px;border-radius:16px;display:grid;place-items:center;
+      background:linear-gradient(135deg, rgba(255,179,71,.16), rgba(255,122,0,.18));
+      border:1px solid rgba(255,179,71,.2);font-size:1.4rem;margin-bottom:16px;
+      box-shadow:0 10px 30px rgba(255,122,0,.12)
+    }
+    .card h3{margin-bottom:10px;font-size:1.2rem}
+    .card p{color:var(--muted);line-height:1.75;font-size:.97rem}
+
+    .about-wrap{align-items:center}
+    .about-visual{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(255,179,71,.16);border-radius:30px;padding:24px;box-shadow:var(--shadow)
+    }
+    .about-visual img{width:100%;display:block;border-radius:22px}
+    .about-points{display:grid;gap:14px;margin-top:20px}
+    .point{
+      display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border-radius:18px;
+      background:rgba(255,255,255,.04);border:1px solid rgba(255,179,71,.09)
+    }
+    .point b{color:#fff}
+    .point span{color:var(--muted);line-height:1.6;font-size:.95rem}
+
+    .contact-wrap{
+      display:grid;grid-template-columns:1fr .95fr;gap:24px;align-items:stretch;
+    }
+    .contact-card,.contact-panel{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(255,179,71,.14);border-radius:30px;padding:28px;box-shadow:var(--shadow)
+    }
+    .contact-item{padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+    .contact-item:last-child{border-bottom:none}
+    .contact-item small{color:var(--gold);display:block;margin-bottom:6px;letter-spacing:.3px}
+    .contact-item p{color:#f0f0f0;line-height:1.7}
+
+    .footer{
+      padding:26px 0;border-top:1px solid rgba(255,255,255,.07);text-align:center;color:#cfcfcf
+    }
+
+    .mobile-toggle{display:none}
+
+    @media (max-width: 980px){
+      .hero-grid,.contact-wrap,.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+      .hero{padding-top:54px}
+      .stats{grid-template-columns:1fr}
+      .nav-links{display:none}
+      .mobile-toggle{display:inline-flex}
+      .nav.open .nav-links{
+        display:flex;position:absolute;top:78px;left:4%;right:4%;flex-direction:column;
+        background:rgba(8,8,8,.98);padding:18px;border:1px solid rgba(255,255,255,.08);border-radius:20px
+      }
+      .brand h2{font-size:.92rem}
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" id="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="brand">
+        <img src="a_logo_design_for_shriram_fitfuel_nutrition_club.png" alt="Shriram FitFuel Logo">
+        <div>
+          <h2>Shriram FitFuel<br>& Nutrition Club</h2>
+          <span>Premium Gym • Clean Nutrition • Strong Discipline</span>
+        </div>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#nutrition">Nutrition</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <button class="btn btn-outline mobile-toggle" id="menuBtn">Menu</button>
+    </div>
+  </nav>
+
+  <header class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <div class="badge">🔥 Premium Fitness + Nutrition Support For Members</div>
+        <h1 class="title">
+          Build Your <span class="gold">Strength</span><br>
+          With Discipline, Fuel & Focus.
+        </h1>
+        <p class="subtitle">
+          Welcome to <b>Shriram FitFuel & Nutrition Club</b> — where serious training meets clean nutrition.
+          We help members stay consistent with gym support, sprouts, boiled eggs, boiled chicken, oats, musli, salads and a strong fitness routine.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#nutrition" class="btn btn-primary">Explore Nutrition</a>
+          <a href="#contact" class="btn btn-outline">Join Through WhatsApp</a>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <h3>100%</h3>
+            <p>Clean fitness-focused member support</p>
+          </div>
+          <div class="stat">
+            <h3>Daily</h3>
+            <p>Nutrition add-ons for better discipline</p>
+          </div>
+          <div class="stat">
+            <h3>Premium</h3>
+            <p>Brand vibe with powerful training energy</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <img class="hero-logo" src="a_logo_design_for_shriram_fitfuel_nutrition_club.png" alt="Shriram FitFuel & Nutrition Club Brand Logo">
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="container grid-2 about-wrap">
+      <div class="about-visual">
+        <img src="a_logo_design_for_shriram_fitfuel_nutrition_club.png" alt="Shriram FitFuel Brand Visual">
+      </div>
+
+      <div>
+        <div class="section-head" style="text-align:left;max-width:none;margin:0 0 24px;">
+          <h2>More Than A Gym.<br>A Full Fitness Lifestyle.</h2>
+          <p>
+            We are building a premium member experience where training and nutrition go together.
+            Our focus is not just workout — our focus is discipline, consistency and visible results.
+          </p>
+        </div>
+
+        <div class="about-points">
+          <div class="point">
+            <div class="icon">🏋️</div>
+            <div><b>Serious Training Environment</b><br><span>Strong workout culture for members who want real progress.</span></div>
+          </div>
+          <div class="point">
+            <div class="icon">🥗</div>
+            <div><b>Nutrition Support</b><br><span>Sprouts, boiled eggs, boiled chicken, oats, musli and fresh salads to support clean eating habits.</span></div>
+          </div>
+          <div class="point">
+            <div class="icon">⚡</div>
+            <div><b>Premium Brand Feel</b><br><span>A powerful local fitness identity that looks modern, bold and trustworthy.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="nutrition">
+    <div class="container">
+      <div class="section-head">
+        <h2>Member Nutrition Support</h2>
+        <p>Simple, clean and effective food support to help members stay on track with their goals.</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="card">
+          <div class="icon">🌱</div>
+          <h3>Fresh Sprouts</h3>
+          <p>Protein-friendly and light support option for members who want better daily nutrition habits.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🥚</div>
+          <h3>Boiled Eggs</h3>
+          <p>Simple and strong protein support for muscle recovery, consistency and gym performance.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🥗</div>
+          <h3>Healthy Salads</h3>
+          <p>Fresh salad support for members who want a cleaner lifestyle and balanced routine.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🍗</div>
+          <h3>Boiled Chicken</h3>
+          <p>Lean protein support for members focused on muscle building, recovery and serious body goals.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🥣</div>
+          <h3>Oats</h3>
+          <p>Simple and effective healthy carb option for energy, fullness and a more disciplined routine.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🥣</div>
+          <h3>Musli</h3>
+          <p>Balanced nutrition support with a smart mix for members who want a clean and active lifestyle.</p>
+        </div>
+        <div class="card">
+          <div class="icon">💪</div>
+          <h3>Fitness Discipline</h3>
+          <p>Our goal is to build not only bodies, but also clean habits and a strong fitness mindset.</p>
+        </div>
+        <div class="card">
+          <div class="icon">⚡</div>
+          <h3>Daily Consistency</h3>
+          <p>Better results come when training and nutrition support work together every single day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why-us">
+    <div class="container">
+      <div class="section-head">
+        <h2>Why Members Choose Us</h2>
+        <p>Because results come faster when training, nutrition and consistency work together.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="icon">🔥</div>
+          <h3>Powerful Brand Identity</h3>
+          <p>Members trust places that look serious, premium and committed to fitness.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🕒</div>
+          <h3>Routine Support</h3>
+          <p>We help members stay disciplined with regular gym + nutrition culture.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🏆</div>
+          <h3>Result-Oriented Focus</h3>
+          <p>Every section of the gym experience is designed around better performance and progress.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container contact-wrap">
+      <div class="contact-card">
+        <div class="section-head" style="text-align:left;max-width:none;margin:0 0 16px;">
+          <h2>Contact & Join Today</h2>
+          <p>Replace the below details with your real gym number, address and timing.</p>
+        </div>
+
+        <div class="contact-item">
+          <small>Gym Name</small>
+          <p>Shriram FitFuel & Nutrition Club</p>
+        </div>
+        <div class="contact-item">
+          <small>Phone / WhatsApp</small>
+          <p>+91 98765 43210</p>
+        </div>
+        <div class="contact-item">
+          <small>Address</small>
+          <p>Your Gym Address, Pune, Maharashtra</p>
+        </div>
+        <div class="contact-item">
+          <small>Timings</small>
+          <p>Monday to Saturday • 5:30 AM to 10:00 PM</p>
+        </div>
+      </div>
+
+      <div class="contact-panel">
+        <div class="section-head" style="text-align:left;max-width:none;margin:0 0 16px;">
+          <h2>Ready To Transform?</h2>
+          <p>Strong body. Clean fuel. Consistent routine. Premium environment.</p>
+        </div>
+        <p style="color:var(--muted);line-height:1.9;margin-bottom:22px;">
+          This website is built to impress members instantly. Once you give me your real number, address,
+          timings and nutrition offering details, this becomes fully client-ready.
+        </p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <a class="btn btn-primary" href="https://wa.me/919876543210" target="_blank" rel="noopener">WhatsApp Now</a>
+          <a class="btn btn-outline" href="tel:+919876543210">Call Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      © 2026 Shriram FitFuel & Nutrition Club • Built for premium fitness branding.
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('navbar');
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    menuBtn?.addEventListener('click', () => {
+      nav.classList.toggle('open');
+    });
+
+    navLinks?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => nav.classList.remove('open'));
+    });
+  </script>
+</body>
+</html>
